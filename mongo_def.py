@@ -123,3 +123,38 @@ def eliminar_documento():
         print("Estudiante eliminado correctamente.")
     else:
         print("No se encontró ningún estudiante con ese _id.")
+
+
+def modificar_documento():
+
+    print("\n--- Modificar estudiante ---")
+
+    id_estudiante = -1
+
+    while id_estudiante < 0:
+        try:
+            id_estudiante = int(input("Introduce el _id del estudiante: "))
+        except ValueError:
+            print("ERROR: Debes introducir un número entero.")
+            id_estudiante = -1
+
+
+    nueva_edad = -1
+
+    while nueva_edad < 0:
+        try:
+            nueva_edad = int(input("Nueva edad: "))
+        except ValueError:
+            print("ERROR: Debes introducir un número entero.")
+            nueva_edad = -1
+
+
+    resultado = coleccion.update_one(
+        {"_id": id_estudiante},
+        { "$set": { "age": nueva_edad }})
+
+
+    if resultado.modified_count > 0:
+        print("Estudiante actualizado correctamente.")
+    else:
+        print("No se modificó ningún documento.")
