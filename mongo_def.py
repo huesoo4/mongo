@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from datetime import datetime
+from pprint import pprint
 
 
 cliente = MongoClient("mongodb://127.0.0.1:27017/")
@@ -8,7 +9,7 @@ coleccion = db["estudiantes"]
 
 def insertar_documento():
 
-    print("\n--- Insertar estudiante ---")
+    print("\n--- Insertar estudiante ---\n")
 
 
     id_estudiante = -1
@@ -104,7 +105,7 @@ def insertar_documento():
 
 
 def eliminar_documento():
-    print("\n--- Eliminar estudiante ---")
+    print("\n--- Eliminar estudiante ---\n")
     id_estudiante = int(input("Introduce el _id del estudiante a eliminar: "))
 
     resultado = coleccion.delete_one({"_id": id_estudiante})
@@ -117,7 +118,7 @@ def eliminar_documento():
 
 def modificar_documento():
 
-    print("\n--- Modificar estudiante ---")
+    print("\n--- Modificar estudiante ---\n")
 
     id_estudiante = -1
 
@@ -151,13 +152,16 @@ def modificar_documento():
 
 
 def mostrar_documentos(cursor):
-    for doc in cursor:
-        print(doc)
 
+    for doc in cursor:
+
+        pprint(doc, sort_dicts=False)
+
+        print("-" * 60 + "\n")
 
 def consulta_simple():
     
-    print("\n--- Consulta simple: estudiantes activos/inactivos ---")
+    print("\n--- Consulta simple: estudiantes activos/inactivos ---\n")
     activo = ""
 
     while activo != "True" and activo != "False":
@@ -182,7 +186,7 @@ def consulta_simple():
 
 
 def consulta_array():
-    print("\n--- Consulta con array: estudiantes que cursan MongoDB ---")
+    print("\n--- Consulta con array: estudiantes que cursan MongoDB ---\n")
 
     resultado = coleccion.find(
         {"subjects": "MongoDB"},
@@ -194,7 +198,7 @@ def consulta_array():
 
 def consulta_array():
 
-    print("\n--- Consulta con array: búsqueda por asignaturas ---")
+    print("\n--- Consulta con array: búsqueda por asignaturas ---\n")
 
     materias = input('Introduce asignaturas entre comillas y separadas por comas:\n'
         '\nEjemplo: "MongoDB","Python","SQL"\n'
@@ -210,7 +214,7 @@ def consulta_array():
 
 
 def consulta_documento_embebido():
-    print("\n--- Consulta con documento embebido: estudiantes de un país ---")
+    print("\n--- Consulta con documento embebido: estudiantes de un país ---\n")
     pais = input('Introduce el nombre del país por el que quieras filtrar: ').capitalize()
 
     resultado = coleccion.find(
@@ -241,7 +245,7 @@ def consulta_scores():
             print("ERROR: Debes introducir un número válido.")
             nota = -1
 
-    print("\n--- Consulta con array de documentos: nota de examen mayor que",nota,"---")
+    print("\n--- Consulta con array de documentos: nota de examen mayor que",nota,"---\n")
 
     resultado = coleccion.find(
         {"scores": {"$elemMatch": {"type": "exam","score": {"$gt": nota}}}},
@@ -251,7 +255,7 @@ def consulta_scores():
 
 
 def consulta_agrupacion():
-    print("\n--- Agrupación: media de edad por país ---")
+    print("\n--- Agrupación: media de edad por país ---\n")
 
     resultado = coleccion.aggregate([
         {"$group": {
