@@ -179,7 +179,7 @@ def consulta_simple():
 
     if activo == "True":
         activo = True
-          
+
     else:
         activo = False
   
@@ -187,5 +187,33 @@ def consulta_simple():
         {"active": activo},
         {"_id": 0, "name": 1, "age": 1, "active": 1}
     ).sort("age", 1)
+
+    mostrar_documentos(resultado)
+
+
+def consulta_array():
+    print("\n--- Consulta con array: estudiantes que cursan MongoDB ---")
+
+    resultado = coleccion.find(
+        {"subjects": "MongoDB"},
+        {"_id": 0, "name": 1, "subjects": 1}
+    )
+
+    mostrar_documentos(resultado)
+
+
+def consulta_array():
+
+    print("\n--- Consulta con array: búsqueda por asignaturas ---")
+
+    materias = input('Introduce asignaturas entre comillas y separadas por comas:\n'
+        '\nEjemplo: "MongoDB","Python","SQL"\n'
+        '\nAsignaturas: ')
+
+    materias = materias.replace('"', '').split(",")
+
+    resultado = coleccion.find(
+        { "subjects": { "$in": materias }},
+        {"_id": 0, "name": 1, "subjects": 1})
 
     mostrar_documentos(resultado)
