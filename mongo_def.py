@@ -38,24 +38,18 @@ def insertar_documento():
     activo = input("¿Activo? (s/n): ").lower() == "s"
 
 
-    asignaturas = input(
-        "Asignaturas separadas por coma: "
-    ).split(",")
-
+    asignaturas = input("Asignaturas separadas por coma: ").split(",")
 
     ciudad = input("Ciudad: ")
     codigo_postal = input("Código postal: ")
     pais = input("País: ")
-
 
     nota_exam = -1
 
     while nota_exam < 0 or nota_exam > 100:
 
         try:
-            nota_exam = round(
-                float(input("Nota examen: ")), 2
-            )
+            nota_exam = round(float(input("Nota examen: ")), 2)
 
         except ValueError:
             print("ERROR: Introduce una nota válida.")
@@ -67,9 +61,7 @@ def insertar_documento():
     while nota_quiz < 0 or nota_quiz > 100:
 
         try:
-            nota_quiz = round(
-                float(input("Nota quiz: ")), 2
-            )
+            nota_quiz = round(float(input("Nota quiz: ")), 2)
 
         except ValueError:
             print("ERROR: Introduce una nota válida.")
@@ -81,9 +73,7 @@ def insertar_documento():
     while nota_homework < 0 or nota_homework > 100:
 
         try:
-            nota_homework = round(
-                float(input("Nota homework: ")), 2
-            )
+            nota_homework = round(float(input("Nota homework: ")), 2)
 
         except ValueError:
             print("ERROR: Introduce una nota válida.")
@@ -234,3 +224,29 @@ def consulta_documento_embebido():
         print('No hay alumnos matriculados de',pais)
     else:
         mostrar_documentos(resultado)
+
+
+def consulta_scores():
+
+    nota = -1
+
+    while nota < 0 or nota > 100:
+        try:
+            nota = float(input("Introduce la nota por la que quieres filtrar: "))
+
+            if nota < 0 or nota > 100:
+                print("ERROR: La nota debe estar entre 0 y 100.")
+
+        except ValueError:
+            print("ERROR: Debes introducir un número válido.")
+            nota = -1
+
+    print("\n--- Consulta con array de documentos: nota de examen mayor que",nota,"---")
+
+    resultado = coleccion.find(
+        {"scores": {"$elemMatch": {"type": "exam","score": {"$gt": nota}}}},
+        {"_id": 0,"name": 1,"scores": 1})
+
+    mostrar_documentos(resultado)
+
+
