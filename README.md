@@ -2,6 +2,8 @@
 
 # Proyecto MongoDB con Python
 
+![Menú](img/MongoDB_Fores-Green.svg)
+
 Proyecto para practicar operaciones CRUD sobre una base de datos MongoDB utilizando Python y PyMongo.
 
 El repositorio contiene un programa dividido en dos archivos principales: `main.py`, encargado del menú principal, y `mongo_def.py`, 
@@ -15,3 +17,4 @@ mongo/
 ├── main.py
 ├── mongo_def.py
 └── students_valido.json
+
