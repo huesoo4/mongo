@@ -65,6 +65,12 @@ Función de consulta con array de documentos
 Función de consulta con array de documentos 
 
 
+### Pprint
+
+![pprint](img/pprint.png)
+
+El uso de pprint ayuda a mejorar la visualización de todas las salidas 
+
 ## Estructura del repositorio
 
 mongo/
