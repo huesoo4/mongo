@@ -113,3 +113,13 @@ def insertar_documento():
     print("Estudiante insertado correctamente.")
 
 
+def eliminar_documento():
+    print("\n--- Eliminar estudiante ---")
+    id_estudiante = int(input("Introduce el _id del estudiante a eliminar: "))
+
+    resultado = coleccion.delete_one({"_id": id_estudiante})
+
+    if resultado.deleted_count > 0:
+        print("Estudiante eliminado correctamente.")
+    else:
+        print("No se encontró ningún estudiante con ese _id.")
