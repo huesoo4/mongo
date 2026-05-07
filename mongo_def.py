@@ -158,3 +158,8 @@ def modificar_documento():
         print("Estudiante actualizado correctamente.")
     else:
         print("No se modificó ningún documento.")
+
+
+def mostrar_documentos(cursor):
+    for doc in cursor:
+        print(doc)
