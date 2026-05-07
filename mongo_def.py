@@ -250,3 +250,14 @@ def consulta_scores():
     mostrar_documentos(resultado)
 
 
+def consulta_agrupacion():
+    print("\n--- Agrupación: media de edad por país ---")
+
+    resultado = coleccion.aggregate([
+        {"$group": {
+                "_id": "$address.country",
+                "total_estudiantes": {"$sum": 1},
+                "edad_media": {"$avg": "$age"}}},
+        {"$sort": {"total_estudiantes": -1}}])
+
+    mostrar_documentos(resultado)
