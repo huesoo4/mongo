@@ -60,7 +60,7 @@ Función de consulta con array de documentos
 
 ### Consulta de agrupación
 
-![Agrupación](img/grouped.png)
+![Agrupación](img/grouped_query.png)
 
 Función de consulta con array de documentos 
 
