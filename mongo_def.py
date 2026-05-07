@@ -217,3 +217,20 @@ def consulta_array():
         {"_id": 0, "name": 1, "subjects": 1})
 
     mostrar_documentos(resultado)
+
+
+def consulta_documento_embebido():
+    print("\n--- Consulta con documento embebido: estudiantes de un país ---")
+    pais = input('Introduce el nombre del país por el que quieras filtrar: ').capitalize()
+
+    resultado = coleccion.find(
+        {"address.country": pais},
+        {"_id": 0, "name": 1, "address": 1}
+    )
+
+    documento = list(resultado)
+
+    if len(documento) == 0:
+        print('No hay alumnos matriculados de',pais)
+    else:
+        mostrar_documentos(resultado)
