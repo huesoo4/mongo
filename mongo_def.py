@@ -223,7 +223,7 @@ def consulta_documento_embebido():
     if len(documento) == 0:
         print('No hay alumnos matriculados de',pais)
     else:
-        mostrar_documentos(resultado)
+        mostrar_documentos(documento)
 
 
 def consulta_scores():

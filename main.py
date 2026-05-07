@@ -1,4 +1,5 @@
 from mongo_def import *
+import os
 
 
 def menu():
@@ -7,7 +8,7 @@ def menu():
 
     while opcion != "9":
 
-        print("\n========== MENÚ MONGODB ==========")
+        print("\n========== MENÚ MONGODB ==========\n")
         print("1. Insertar estudiante")
         print("2. Eliminar estudiante")
         print("3. Modificar estudiante")
@@ -18,7 +19,9 @@ def menu():
         print("8. Consulta de agrupación")
         print("9. Salir")
 
-        opcion = input("Elige una opción: ")
+        opcion = input("\nElige una opción: ")
+
+        os.system("clear")
 
         if opcion == "1":
             insertar_documento()
