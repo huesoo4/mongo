@@ -163,3 +163,29 @@ def modificar_documento():
 def mostrar_documentos(cursor):
     for doc in cursor:
         print(doc)
+
+
+def consulta_simple():
+    
+    print("\n--- Consulta simple: estudiantes activos/inactivos ---")
+    activo = ""
+
+    while activo != "True" and activo != "False":
+
+        activo = input("Introduce True para activos o False para inactivos: ").capitalize()
+
+        if activo != "True" and activo != "False":
+            print("ERROR: Solo puedes introducir True o False.")
+
+    if activo == "True":
+        activo = True
+          
+    else:
+        activo = False
+  
+    resultado = coleccion.find(
+        {"active": activo},
+        {"_id": 0, "name": 1, "age": 1, "active": 1}
+    ).sort("age", 1)
+
+    mostrar_documentos(resultado)
